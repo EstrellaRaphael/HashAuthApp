@@ -1,0 +1,49 @@
+# ---- GLOBAL ----
+*.log
+.DS_Store
+Thumbs.db
+
+# ---- PYTHON / FLASK ----
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+env/
+venv/
+ENV/
+.venv/
+
+# SQLite DB & config
+*.sqlite3
+*.db
+instance/
+*.env
+
+# VSCode
+.vscode/
+
+# ---- ANGULAR ----
+# Node modules
+node_modules/
+
+# Angular build output
+dist/
+build/
+out-tsc/
+
+# Compiled files
+*.js
+*.map
+*.tsbuildinfo
+
+# IDE configs
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+
+# Environment files
+frontend/src/environments/environment.ts
+frontend/src/environments/environment.prod.ts
