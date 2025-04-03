@@ -56,7 +56,7 @@ export class RegisterComponent {
         ],
         confirmPassword: ['', Validators.required],
       },
-      { Validators: this.passwordsMatchValidator }
+      { validators: this.passwordsMatchValidator }
     );
   }
 
@@ -67,6 +67,7 @@ export class RegisterComponent {
   }
 
   onSubmit() {
+    console.log(this.form.errors)
     if (this.form.invalid) {
       return;
     }
