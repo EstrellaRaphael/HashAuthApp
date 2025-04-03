@@ -12,7 +12,7 @@ def get_db():
 
 
 # vai fechar a conexão com o banco no final de cada request feito
-def close_db():
+def close_db(e=None):
     db = g.pop("db", None)
     if db is not None:
         db.close()
@@ -23,7 +23,7 @@ def init_db():
     db = get_db()
     db.execute(
         """
-            CREATE TABLE IF NOT EXISTS (users
+            CREATE TABLE IF NOT EXISTS users (
             email TEXT PRIMARY KEY,
             password_hash TEXT NOT NULL
             )
@@ -34,4 +34,4 @@ def init_db():
 def init_app(app):
     app.teardown_appcontext(close_db)
     with app.app_context():
-        init_db
+        init_db()
