@@ -1,25 +1,44 @@
-<h2>Cadastro</h2>
-
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div>
-        <label for="email">E-Mail</label><br>
-        <input id="email" type="email" formControlName="email">
-        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" style="color: red">
+    <h2>Cadastro</h2>
+
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>E-mail</mat-label>
+        <input matInput type="email" formControlName="email" />
+        <mat-error *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
             E-mail inválido.
-        </div>
-    </div>
+        </mat-error>
+    </mat-form-field>
 
-    <div style="margin-top: 12px;">
-        <label for="password">Senha</label><br>
-        <input id="password" type="password" formControlName="password">
-        <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" style="color: red;">
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Senha</mat-label>
+        <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password" />
+        <button type="button" mat-icon-button matSuffix (click)="showPassword = !showPassword"
+            [attr.aria-label]="'Mostrar senha'">
+            <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
             A senha deve ter no mínimo 8 caracteres, incluindo letra maiúscula, minúscula, número e caractere especial.
-        </div>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Repita a senha</mat-label>
+        <input matInput [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" />
+        <button type="button" mat-icon-button matSuffix (click)="showConfirmPassword = !showConfirmPassword"
+            [attr.aria-label]="'Mostrar confirmação de senha'">
+            <mat-icon>{{ showConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="form.hasError('passwordMismatch') && form.get('confirmPassword')?.touched">
+            As senhas não coincidem.
+        </mat-error>
+    </mat-form-field>
+
+    <div *ngIf="message" [ngClass]="error ? 'error' : 'success'" class="message-box">
+        <mat-icon>{{ error ? 'error_outline' : 'check_circle' }}</mat-icon>
+        {{ message }}
     </div>
 
-    <button type="submit" [disabled]="form.invalid" style="margin-top: 16px;">Cadastrar</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        Cadastrar
+    </button>
 </form>
-
-<div *ngIf="message" [style.color]="error ? 'red' : 'green'" style="margin-top: 16px;">
-    {{ message }}
-</div>
