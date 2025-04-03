@@ -1,0 +1,25 @@
+<h2>Cadastro</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="email">E-Mail</label><br>
+        <input id="email" type="email" formControlName="email">
+        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" style="color: red">
+            E-mail inválido.
+        </div>
+    </div>
+
+    <div style="margin-top: 12px;">
+        <label for="password">Senha</label><br>
+        <input id="password" type="password" formControlName="password">
+        <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" style="color: red;">
+            A senha deve ter no mínimo 8 caracteres, incluindo letra maiúscula, minúscula, número e caractere especial.
+        </div>
+    </div>
+
+    <button type="submit" [disabled]="form.invalid" style="margin-top: 16px;">Cadastrar</button>
+</form>
+
+<div *ngIf="message" [style.color]="error ? 'red' : 'green'" style="margin-top: 16px;">
+    {{ message }}
+</div>
