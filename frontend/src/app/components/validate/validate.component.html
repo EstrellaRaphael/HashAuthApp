@@ -1,0 +1,32 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h2>Validar Senha</h2>
+
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>E-mail</mat-label>
+        <input matInput type="email" formControlName="email" />
+        <mat-error *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+            E-mail inválido.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Senha</mat-label>
+        <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password" />
+        <button type="button" mat-icon-button matSuffix (click)="showPassword = !showPassword"
+            [attr.aria-label]="'Mostrar senha'" [attr.aria-pressed]="showPassword">
+            <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+            Senha obrigatória.
+        </mat-error>
+    </mat-form-field>
+
+    <div *ngIf="message" [ngClass]="error ? 'error' : 'success'" class="message-box">
+        <mat-icon>{{ error ? 'error_outline' : 'check_circle' }}</mat-icon>
+        {{ message }}
+    </div>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        Validar
+    </button>
+</form>

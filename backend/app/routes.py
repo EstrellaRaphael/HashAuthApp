@@ -69,4 +69,3 @@ def get_hash(email):
         return jsonify({'email': email, 'hash': user['password_hash']})
     else:
         return jsonify({'message': 'E-mail inexistente'}), 404
-    

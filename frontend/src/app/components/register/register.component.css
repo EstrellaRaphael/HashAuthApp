@@ -38,7 +38,6 @@ button {
   align-self: flex-start;
 }
 
-/* Mensagem de feedback */
 .message-box {
   display: flex;
   align-items: center;
