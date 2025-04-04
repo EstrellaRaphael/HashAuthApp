@@ -1,0 +1,23 @@
+.navbar {
+    padding: 0 24px;
+    font-family: 'Inter', sans-serif;
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+a[mat-button] {
+    font-weight: 500;
+    text-transform: none;
+}
+
+a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
