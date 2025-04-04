@@ -1,5 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <h2>Validar Senha</h2>
+    <h2>Login</h2>
 
     <mat-form-field appearance="outline" class="full-width">
         <mat-label>E-mail</mat-label>
@@ -13,7 +13,7 @@
         <mat-label>Senha</mat-label>
         <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password" />
         <button type="button" mat-icon-button matSuffix (click)="showPassword = !showPassword"
-            [attr.aria-label]="'Mostrar senha'" [attr.aria-pressed]="showPassword">
+            [attr.aria-label]="'Mostrar senha'">
             <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
         <mat-error *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
@@ -27,6 +27,6 @@
     </div>
 
     <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
-        Validar
+        Entrar
     </button>
 </form>
