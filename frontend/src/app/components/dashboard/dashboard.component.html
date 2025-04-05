@@ -1,0 +1,24 @@
+<div class="dashboard-container">
+    <h2>Bem-vindo ao Dashboard</h2>
+
+    <div class="top-bar">
+        <span>Você está logado como: <strong>{{ email }}</strong></span>
+        <button mat-button color="primary" (click)="logout()" class="logout-btn">
+            <mat-icon>logout</mat-icon>
+            Logout
+        </button>
+    </div>
+
+    <div class="hash-box" *ngIf="hash">
+        <div class="hash-header">
+            <span>Hash da sua senha:</span>
+            <button mat-icon-button (click)="toggleHash()" [attr.aria-label]="'Alternar visibilidade do hash'">
+                <mat-icon>{{ showHash ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+        </div>
+
+        <div class="hash-value" *ngIf="showHash">
+            {{ hash }}
+        </div>
+    </div>
+</div>

@@ -54,30 +54,14 @@ export class LoginComponent {
 
     this.api.validate({ email, password }).subscribe({
       next: (res) => {
-        this.message = res.message;
-        this.error = false;
-
-        this.snackBar.open(res.message, 'Fechar', {
-          duration: 4000,
-          panelClass: ['snackbar-success'],
-        });
-
-        // Simular redirecionamento pós-login
-        if (res.message === 'Senha correta') {
-          this.router.navigate(['/dashboard']);
-        }
-
+        localStorage.setItem('auth', email); // salva e-mail no localStorage como "logado"
+        this.snackBar.open(res.message, 'Fechar', { duration: 4000, panelClass: ['snackbar-success'] });
         this.form.reset();
+        this.router.navigate(['/dashboard']); // redireciona
       },
       error: (err) => {
-        this.error = true;
-        this.message = err.error?.message || 'Erro no login';
-
-        this.snackBar.open(this.message, 'Fechar', {
-          duration: 4000,
-          panelClass: ['snackbar-error'],
-        });
-      },
+        this.snackBar.open(err?.message || 'Erro na validação.', 'Fechar', { duration: 4000, panelClass: ['snackbar-error'] });
+      }
     });
   }
 }
